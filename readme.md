@@ -25,36 +25,39 @@ Ensure you have the following installed:
 
 ### 1. Clone the Repository
 
-```bash
+```
 git clone https://github.com/opsec-bot/ez-bot.git
-cd ez-bot
 ```
 
 ### 2. Install Dependencies
-
-```bash
+```
+cd ez-bot
+```
+```
 npm install
 ```
 
+
 ### 3. Configure Environment Variables
 
-Copy the example configuration file and edit it:
+Create the configuration file from the example config file and edit it:
 
-```bash
+```
 cp config.example.ts config.ts
 ```
 
-Edit the following in `config.ts`:
 
-- **Telegram Bot Token (`telegramToken`)**: Your Telegram bot API token.
-- **Admin IDs (`adminIds`)**: List of Telegram user IDs with admin privileges.
-- **Hostname (`hostname`)**: Your domain or `localhost` for development.
-- **OxaPay Merchant Key (`oxapayMerchantKey`)**: Use the sandbox for testing or your production key.
+Edit the following in config.ts:
+
+- **Telegram Bot Token (telegramToken)**: Your Telegram bot API token.
+- **Admin IDs (adminIds)**: List of Telegram user IDs with admin privileges.
+- **Hostname (hostname)**: Your domain or localhost for development.
+- **OxaPay Merchant Key (oxapayMerchantKey)**: Use the sandbox for testing or your production key.
 - **Prices**: Update pricing details as needed.
 
 ### 4. Database Initialization
 
-Ensure SQLite is set up. The bot will automatically create `database.db` and the necessary tables if they don’t exist when you run the bot.
+Ensure SQLite is set up. The bot will automatically create database.db and the necessary tables if they don’t exist when you run the bot.
 
 ---
 
@@ -64,13 +67,14 @@ Ensure SQLite is set up. The bot will automatically create `database.db` and the
 
 To start the bot, run:
 
-```bash
+```
 npm start
 ```
 
+
 ### Interacting with the Bot
 
-- **Start Command**: `/start` - Initializes the bot and displays the main menu.
+- **Start Command**: /start - Initializes the bot and displays the main menu.
 - **Account Info**: Select "Account Info" from the menu to view your account details.
 - **Redeem License**: Select "Redeem" to enter a license code.
 - **Purchase License**: Select "Purchase" to buy a new license.
