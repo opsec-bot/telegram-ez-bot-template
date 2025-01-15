@@ -1,6 +1,6 @@
-# Ez-Bot
+# telegram-ez-bot-template
 
-Ez-Bot is a Telegram bot application designed for merchants who value their privacy. The bot interacts with users through Telegram, providing functionalities such as:
+telegram-ez-bot-template is a Telegram bot application designed for merchants who value their privacy. The bot interacts with users through Telegram, providing functionalities such as:
 
 - Viewing account information
 - Redeeming licenses
@@ -26,12 +26,12 @@ Ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```
-git clone https://github.com/opsec-bot/ez-bot.git
+git clone https://github.com/opsec-bot/telegram-ez-bot-template.git
 ```
 
 ### 2. Install Dependencies
 ```
-cd ez-bot
+cd telegram-ez-bot-template
 ```
 ```
 npm install
@@ -84,7 +84,7 @@ npm start
 
 ## Contributing
 
-Ez-Bot supports **66 languages**, and contributions are welcome! To contribute:
+telegram-ez-bot-template supports **66 languages**, and contributions are welcome! To contribute:
 
 1. Edit or add new language files.
 2. Submit a pull request with your changes.
