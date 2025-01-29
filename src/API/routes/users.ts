@@ -10,6 +10,14 @@ import { newUnix } from 'src/utils/apiutil';
 
 const router = express.Router();
 
+/**
+ * @route POST /users/create
+ * @desc Create a new license
+ * @param {string} key - License key
+ * @param {number} value - License duration
+ * @param {string} creatorId - ID of the creator
+ * @returns {Object} Response with created license
+ */
 router.post('/users/create', async (req: Request, res: Response) => {
   try {
     const { key, value, creatorId } = req.body;
@@ -29,6 +37,13 @@ router.post('/users/create', async (req: Request, res: Response) => {
   }
 });
 
+/**
+ * @route POST /users/delete
+ * @desc Delete a license by license key or Telegram ID
+ * @param {string} license - License key
+ * @param {string} telegramID - Telegram ID of the user
+ * @returns {Object} Response with deletion status
+ */
 router.post('/users/delete', async (req: Request, res: Response) => {
   try {
     const { license, telegramID } = req.body;
@@ -65,6 +80,13 @@ router.post('/users/delete', async (req: Request, res: Response) => {
   }
 });
 
+/**
+ * @route POST /users/update
+ * @desc Update license information
+ * @param {string} license - License key
+ * @param {Object} newData - New license data
+ * @returns {Object} Response with update status
+ */
 router.post('/users/update', async (req: Request, res: Response) => {
   try {
     const { license, newData } = req.body;
@@ -88,6 +110,13 @@ router.post('/users/update', async (req: Request, res: Response) => {
   }
 });
 
+/**
+ * @route POST /message/:telegramId
+ * @desc Send a message to a user via Telegram
+ * @param {string} telegramId - Telegram ID of the recipient
+ * @param {string} message - Message content to send
+ * @returns {Object} Response with message status
+ */
 router.post('/message/:telegramId', async (req: Request, res: Response) => {
   try {
     const telegramId = req.params.telegramId;

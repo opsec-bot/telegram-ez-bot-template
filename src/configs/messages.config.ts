@@ -60,7 +60,6 @@ type MessagesType = {
       statusPaid: string;
       statusExpired: string;
       statusDefault: string;
-      logMessage: string;
     };
   };
 };
@@ -124,8 +123,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Your Invoice #{{trackId}} has expired. ❌❌',
       statusDefault:
         "Invoice update:\n\nStatus: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nAmount due: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Invoice {{trackId}} completed. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   es: {
@@ -187,8 +184,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Tu factura #{{trackId}} ha expirado. ❌❌',
       statusDefault:
         "Actualización de factura:\n\nEstado: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nCantidad debida: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Factura {{trackId}} completada. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   zh: {
@@ -249,7 +244,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ 您的发票 #{{trackId}} 已过期。❌❌',
       statusDefault:
         "发票更新：\n\n状态：{{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\n金额：$' + amount + ' ' + currency : ''}}",
-      logMessage: '💸💸 发票 {{trackId}} 已完成。+${{amount}} {{currency}}\nTXID：`{{txID}}` 💸💸',
     },
   },
   fr: {
@@ -311,8 +305,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Votre facture #{{trackId}} a expiré. ❌❌',
       statusDefault:
         "Mise à jour de la facture :\n\nStatut : {{status}}\n{{trackId ? 'ID : ' + trackId : ''}}{{amount && currency ? '\\nMontant : $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Facture {{trackId}} terminée. +${{amount}} {{currency}}\nTXID : `{{txID}}` 💸💸',
     },
   },
   hi: {
@@ -374,8 +366,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ आपका चालान #{{trackId}} समाप्त हो गया है। ❌❌',
       statusDefault:
         "चालान अपडेट:\n\nस्थिति: {{status}}\n{{trackId ? 'आईडी: ' + trackId : ''}}{{amount && currency ? '\\nराशि: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 चालान {{trackId}} पूरा हो गया है। +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   ar: {
@@ -436,8 +426,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ انتهت صلاحية الفاتورة #{{trackId}}. ❌❌',
       statusDefault:
         "تحديث الفاتورة:\n\nالحالة: {{status}}\n{{trackId ? 'المعرف: ' + trackId : ''}}{{amount && currency ? '\\nالمبلغ: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 تم إكمال الفاتورة {{trackId}}. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   pt: {
@@ -498,8 +486,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Sua fatura #{{trackId}} expirou. ❌❌',
       statusDefault:
         "Atualização de Fatura:\n\nStatus: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nValor devido: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Fatura {{trackId}} concluída. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   ru: {
@@ -560,8 +546,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Срок действия счета #{{trackId}} истёк. ❌❌',
       statusDefault:
         "Обновление счета:\n\nСтатус: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nСумма к оплате: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Счет {{trackId}} завершён. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   bn: {
@@ -622,8 +606,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ আপনার ইনভয়েস #{{trackId}} মেয়াদ শেষ হয়ে গেছে। ❌❌',
       statusDefault:
         "ইনভয়েস আপডেট:\n\nঅবস্থা: {{status}}\n{{trackId ? 'আইডি: ' + trackId : ''}}{{amount && currency ? '\\nবকেয়া: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 ইনভয়েস {{trackId}} সম্পন্ন হয়েছে। +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   id: {
@@ -684,8 +666,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Faktur Anda #{{trackId}} telah kedaluwarsa. ❌❌',
       statusDefault:
         "Pembaruan Faktur:\n\nStatus: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nJumlah yang Harus Dibayar: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Faktur {{trackId}} selesai. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   ja: {
@@ -746,7 +726,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ 請求書 #{{trackId}} の有効期限が切れました。 ❌❌',
       statusDefault:
         "請求書更新:\n\nステータス: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\n支払額: $' + amount + ' ' + currency : ''}}",
-      logMessage: '💸💸 請求書 {{trackId}} 完了。+${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   ko: {
@@ -808,7 +787,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ 송장 #{{trackId}}이 만료되었습니다. ❌❌',
       statusDefault:
         "송장 업데이트:\n\n상태: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\n결제 금액: $' + amount + ' ' + currency : ''}}",
-      logMessage: '💸💸 송장 {{trackId}} 완료. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   pa: {
@@ -870,7 +848,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ ਤੁਹਾਡਾ ਚਲਾਣ #{{trackId}} ਮਿਆਦ ਪੂਰੀ ਹੋ ਗਿਆ। ❌❌',
       statusDefault:
         "ਚਲਾਣ ਅੱਪਡੇਟ:\n\nਸਥਿਤੀ: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nਬਕਾਇਆ: $' + amount + ' ' + currency : ''}}",
-      logMessage: '💸💸 ਚਲਾਣ {{trackId}} ਪੂਰਾ। +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   ta: {
@@ -932,8 +909,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ உங்கள் விலைப்பட்டியல் #{{trackId}} காலாவதியானது. ❌❌',
       statusDefault:
         "விலைப்பட்டியல் புதுப்பிப்பு:\n\nநிலை: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nதொகை: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 விலைப்பட்டியல் {{trackId}} நிறைவேறியது. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   te: {
@@ -994,8 +969,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ మీ ఇన్వాయిస్ #{{trackId}} గడువు ముగిసింది. ❌❌',
       statusDefault:
         "ఇన్వాయిస్ అప్‌డేట్:\n\nస్థితి: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nబకాయి మొత్తం: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 ఇన్వాయిస్ {{trackId}} పూర్తి చేయబడింది. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   mr: {
@@ -1057,8 +1030,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ आपला इन्व्हॉइस #{{trackId}} कालबाह्य झाला आहे. ❌❌',
       statusDefault:
         "इन्व्हॉइस अद्यतन:\n\nस्थिती: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nदेय रक्कम: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 इन्व्हॉइस {{trackId}} पूर्ण झाला. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   gu: {
@@ -1120,8 +1091,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ તમારું ઇનવૉઇસ #{{trackId}} સમાપ્ત થઈ ગયું છે. ❌❌',
       statusDefault:
         "ઇનવૉઇસ અપડેટ:\n\nસ્થિતિ: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nબાકી રકમ: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 ઇનવૉઇસ {{trackId}} પૂર્ણ થયું છે. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   kn: {
@@ -1182,8 +1151,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ ನಿಮ್ಮ ಬಿಲ್ #{{trackId}} ಅವಧಿ ಮುಗಿದಿದೆ. ❌❌',
       statusDefault:
         "ಬಿಲ್ ನವೀಕರಣ:\n\nಸ್ಥಿತಿ: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nಪಾವತಿಸಬೇಕಾದ ಮೊತ್ತ: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 ಬಿಲ್ {{trackId}} ಪೂರ್ಣಗೊಂಡಿದೆ. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   ml: {
@@ -1244,8 +1211,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ നിങ്ങളുടെ ഇൻവോയ്സ് #{{trackId}} കാലഹരണപ്പെട്ടു. ❌❌',
       statusDefault:
         "ഇൻവോയ്സ് അപ്‌ഡേറ്റ്:\n\nനില: {{status}}\n{{trackId ? 'ഐഡി: ' + trackId : ''}}{{amount && currency ? '\\nഅടയ്ക്കാനിരിക്കുന്ന തുക: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 ഇൻവോയ്സ് {{trackId}} പൂർത്തിയായി. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   ur: {
@@ -1306,8 +1271,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ آپ کا انوائس #{{trackId}} ختم ہو گیا ہے۔ ❌❌',
       statusDefault:
         "انوائس کی تازہ کاری:\n\nحالت: {{status}}\n{{trackId ? 'آئی ڈی: ' + trackId : ''}}{{amount && currency ? '\\nواجب الادا رقم: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 انوائس {{trackId}} مکمل ہو گیا۔ +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   vi: {
@@ -1369,8 +1332,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Hóa đơn #{{trackId}} của bạn đã hết hạn. ❌❌',
       statusDefault:
         "Cập nhật hóa đơn:\n\nTrạng thái: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nSố tiền còn lại: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Hóa đơn {{trackId}} đã hoàn thành. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   tl: {
@@ -1432,8 +1393,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Nag-expire na ang iyong invoice #{{trackId}}. ❌❌',
       statusDefault:
         "Pag-update ng Invoice:\n\nStatus: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nNatitirang Halaga: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Natapos ang invoice #{{trackId}}. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   th: {
@@ -1494,8 +1453,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ ใบแจ้งหนี้ #{{trackId}} หมดอายุแล้ว ❌❌',
       statusDefault:
         "อัปเดตใบแจ้งหนี้:\n\nสถานะ: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nจำนวนเงินที่ค้างชำระ: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 ใบแจ้งหนี้ #{{trackId}} เสร็จสมบูรณ์ +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   my: {
@@ -1557,8 +1514,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ သင်၏ ငွေတောင်းခံလွှာ #{{trackId}} သက်တမ်းကုန်ဆုံးသွားပါပြီ ❌❌',
       statusDefault:
         "ငွေတောင်းခံလွှာ အသစ်ပြင်ဆင်မှု:\n\nအခြေအနေ: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nပေးရန် ကျန်ရှိသော ငွေ: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 ငွေတောင်းခံလွှာ {{trackId}} ပြီးဆုံးပါပြီ။ +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   si: {
@@ -1620,8 +1575,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ ඔබේ ඉන්වොයිස් #{{trackId}} කල් ඉකුත් වී ඇත. ❌❌',
       statusDefault:
         "ඉන්වොයිස් යාවත්කාලීන කිරීම:\n\nතත්ත්වය: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nබැරැපත් මුදල: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 ඉන්වොයිස් {{trackId}} සම්පූර්ණය වී ඇත. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   ne: {
@@ -1682,8 +1635,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ तपाईंको इनभ्वाइस #{{trackId}} को म्याद समाप्त भइसकेको छ। ❌❌',
       statusDefault:
         "इनभ्वाइस अद्यावधिक:\n\nस्थिति: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nभुक्तानी गर्न बाँकी रकम: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 इनभ्वाइस {{trackId}} पूरा भयो। +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   km: {
@@ -1745,8 +1696,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ វិក័យប័ត្រ #{{trackId}} របស់អ្នកផុតកំណត់ហើយ។ ❌❌',
       statusDefault:
         "ការអាប់ដេតវិក្កយបត្រ៖\n\nស្ថានភាព៖ {{status}}\n{{trackId ? 'ID៖ ' + trackId : ''}}{{amount && currency ? '\\nចំនួនទឹកប្រាក់ដែលត្រូវបង់៖ $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 វិក័យប័ត្រ {{trackId}} បានបញ្ចប់។ +${{amount}} {{currency}}\nTXID៖ `{{txID}}` 💸💸',
     },
   },
   lo: {
@@ -1807,8 +1756,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ ໃບຮັບເງິນຂອງເຈົ້າ #{{trackId}} ໝົດອາຍຸແລ້ວ. ❌❌',
       statusDefault:
         "ການອັບເດດໃບຮັບເງິນ:\n\nສະຖານະ: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nຈໍານວນທີ່ຍັງຄ້າງ: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 ໃບຮັບເງິນ {{trackId}} ສໍາເລັດ. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   mn: {
@@ -1869,8 +1816,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Таны төлбөрийн баримт #{{trackId}} дууссан байна. ❌❌',
       statusDefault:
         "Төлбөрийн баримтыг шинэчлэх:\n\nТөлөв: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nТөлөх дүн: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Төлбөрийн баримт {{trackId}} амжилттай болсон. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   wu: {
@@ -1931,7 +1876,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ 儂嘅發票 #{{trackId}} 已過期 ❌❌',
       statusDefault:
         "發票更新:\n\n狀態: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\n應付金額: $' + amount + ' ' + currency : ''}}",
-      logMessage: '💸💸 發票 {{trackId}} 已完成。+${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   jv: {
@@ -1992,8 +1936,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Invoice sampeyan #{{trackId}} wis kadaluwarsa. ❌❌',
       statusDefault:
         "Nganyari Invoice:\n\nStatus: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nJumlah sing kudu dibayar: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Invoice {{trackId}} rampung. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   ha: {
@@ -2055,8 +1997,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Fature ɗinku #{{trackId}} ya ƙare. ❌❌',
       statusDefault:
         "Sabunta Fature:\n\nMatsayi: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nAdadin da ya rage: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Fature {{trackId}} ya cika. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   yo: {
@@ -2117,8 +2057,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Inifọnsi rẹ #{{trackId}} ti pari. ❌❌',
       statusDefault:
         "Imudojuiwọn Inifọnsi:\n\nIpo: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nOwo tó yẹ kó san: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Inifọnsi {{trackId}} pari. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   sw: {
@@ -2179,8 +2117,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Ankara yako #{{trackId}} imeisha muda wake. ❌❌',
       statusDefault:
         "Sasisho la Ankara:\n\nHali: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nKiasi kinachodaiwa: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Ankara {{trackId}} imekamilika. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   am: {
@@ -2241,8 +2177,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ የክፍያ ማስታወቂያዎ #{{trackId}} አስቀድሞ አልተጠቀምም። ❌❌',
       statusDefault:
         "የክፍያ ማስታወቂያ አድሱ:\n\nሁኔታ: {{status}}\n{{trackId ? 'መታወቂያ: ' + trackId : ''}}{{amount && currency ? '\\nሚኖር ክፍያ ብር: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 ክፍያ ማስታወቂያ {{trackId}} ተጠናቆል። +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   eg_ar: {
@@ -2303,8 +2237,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ الفاتورة رقم #{{trackId}} انتهت صلاحيتها. ❌❌',
       statusDefault:
         "تحديث الفاتورة:\n\nالحالة: {{status}}\n{{trackId ? 'الكود: ' + trackId : ''}}{{amount && currency ? '\\nالمبلغ المستحق: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 الفاتورة رقم {{trackId}} اكتملت. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   de: {
@@ -2365,8 +2297,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Ihre Rechnung #{{trackId}} ist abgelaufen. ❌❌',
       statusDefault:
         "Rechnungsaktualisierung:\n\nStatus: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nFälliger Betrag: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Rechnung {{trackId}} abgeschlossen. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   it: {
@@ -2428,8 +2358,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ La tua fattura #{{trackId}} è scaduta. ❌❌',
       statusDefault:
         "Aggiornamento fattura:\n\nStato: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nImporto dovuto: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Fattura {{trackId}} completata. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   nl: {
@@ -2490,8 +2418,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Je factuur #{{trackId}} is verlopen. ❌❌',
       statusDefault:
         "Factuurupdate:\n\nStatus: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nVerschuldigd bedrag: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Factuur {{trackId}} voltooid. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   pl: {
@@ -2552,8 +2478,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Twoja faktura #{{trackId}} wygasła. ❌❌',
       statusDefault:
         "Aktualizacja faktury:\n\nStatus: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nKwota należna: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Faktura {{trackId}} zakończona. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   sv: {
@@ -2614,8 +2538,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Din faktura #{{trackId}} har löpt ut. ❌❌',
       statusDefault:
         "Faktura uppdaterad:\n\nStatus: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nUtestående belopp: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Faktura {{trackId}} slutförd. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   uk: {
@@ -2676,8 +2598,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Термін дії вашого рахунку #{{trackId}} закінчився. ❌❌',
       statusDefault:
         "Оновлення рахунку:\n\nСтатус: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nСума до сплати: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Рахунок {{trackId}} завершено. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   el: {
@@ -2739,8 +2659,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Το τιμολόγιό σας #{{trackId}} έχει λήξει. ❌❌',
       statusDefault:
         "Ενημέρωση Τιμολογίου:\n\nΚατάσταση: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nΟφειλόμενο ποσό: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Το τιμολόγιο {{trackId}} ολοκληρώθηκε. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   ro: {
@@ -2801,8 +2719,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Factura dvs. #{{trackId}} a expirat. ❌❌',
       statusDefault:
         "Actualizare Factură:\n\nStare: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nSumă datorată: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Factura {{trackId}} a fost finalizată. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   hu: {
@@ -2863,8 +2779,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Az Ön számlája #{{trackId}} lejárt. ❌❌',
       statusDefault:
         "Számla Frissítése:\n\nÁllapot: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nKifizetendő összeg: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Számla {{trackId}} teljesítve. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   cs: {
@@ -2925,8 +2839,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Platnost vaší faktury #{{trackId}} vypršela. ❌❌',
       statusDefault:
         "Aktualizace faktury:\n\nStav: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nDlužná částka: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Faktura {{trackId}} dokončena. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   sk: {
@@ -2987,8 +2899,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Platnosť vašej faktúry #{{trackId}} vypršala. ❌❌',
       statusDefault:
         "Aktualizácia faktúry:\n\nStav: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nDlžná suma: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Faktúra {{trackId}} dokončená. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   bg: {
@@ -3049,8 +2959,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Вашата фактура #{{trackId}} е изтекла. ❌❌',
       statusDefault:
         "Актуализация на фактурата:\n\nСтатус: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nДължима сума: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Фактура {{trackId}} е завършена. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   hr: {
@@ -3111,8 +3019,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Vaša faktura #{{trackId}} je istekla. ❌❌',
       statusDefault:
         "Ažuriranje fakture:\n\nStatus: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nIznos za plaćanje: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Faktura {{trackId}} dovršena. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   sl: {
@@ -3173,8 +3079,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Vaš račun #{{trackId}} je potekel. ❌❌',
       statusDefault:
         "Posodobitev računa:\n\nStanje: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nZnesek za plačilo: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Račun {{trackId}} zaključen. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   lt: {
@@ -3235,8 +3139,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Jūsų sąskaita #{{trackId}} baigė galioti. ❌❌',
       statusDefault:
         "Sąskaitos atnaujinimas:\n\nBūsena: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nSuma: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Sąskaita {{trackId}} užbaigta. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   lv: {
@@ -3297,8 +3199,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Jūsu rēķins #{{trackId}} ir beidzies. ❌❌',
       statusDefault:
         "Rēķina atjauninājums:\n\nStatuss: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nParāds: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Rēķins {{trackId}} pabeigts. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   et: {
@@ -3359,8 +3259,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Teie arve #{{trackId}} on aegunud. ❌❌',
       statusDefault:
         "Arve uuendus:\n\nStaatus: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nVõlgnevus: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Arve {{trackId}} lõpetatud. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   sq: {
@@ -3421,8 +3319,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Fatura juaj #{{trackId}} ka skaduar. ❌❌',
       statusDefault:
         "Përditësimi i faturës:\n\nStatusi: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nShuma për t'u paguar: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Fatura {{trackId}} u përfundua. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   fa: {
@@ -3483,8 +3379,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ فاکتور شما #{{trackId}} منقضی شده است. ❌❌',
       statusDefault:
         "به‌روزرسانی فاکتور:\n\nوضعیت: {{status}}\n{{trackId ? 'شناسه: ' + trackId : ''}}{{amount && currency ? '\\nمبلغ قابل پرداخت: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 فاکتور {{trackId}} تکمیل شد. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   he: {
@@ -3545,8 +3439,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ תוקף החשבונית שלך #{{trackId}} פג. ❌❌',
       statusDefault:
         "עדכון חשבונית:\n\nסטטוס: {{status}}\n{{trackId ? 'מזהה: ' + trackId : ''}}{{amount && currency ? '\\nסכום לתשלום: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 החשבונית {{trackId}} הושלמה. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   az: {
@@ -3608,8 +3500,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Sizin fakturanız #{{trackId}} müddəti bitmişdir. ❌❌',
       statusDefault:
         "Faktura Yeniləməsi:\n\nStatus: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nÖdəniş Məbləği: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Faktura {{trackId}} tamamlandı. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   hy: {
@@ -3671,8 +3561,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Ձեր հաշիվը #{{trackId}} ժամկետանց է: ❌❌',
       statusDefault:
         "Հաշվի թարմացում:\n\nԿարգավիճակ՝ {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nՎճարման գումար: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Հաշիվը {{trackId}} ավարտված է: +${{amount}} {{currency}}\nTXID՝ `{{txID}}` 💸💸',
     },
   },
   ka: {
@@ -3734,8 +3622,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ თქვენი ინვოისი #{{trackId}} ვადაგასულია. ❌❌',
       statusDefault:
         "ინვოისის განახლება:\n\nსტატუსი: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nგადასახდელი თანხა: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 ინვოისი {{trackId}} დასრულდა. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   uz: {
@@ -3797,8 +3683,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Sizning hisob-fakturangiz #{{trackId}} muddati tugagan. ❌❌',
       statusDefault:
         "Hisob-faktura yangilanishi:\n\nHolat: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nTo‘lanadigan summa: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Hisob-faktura {{trackId}} tugatildi. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   kk: {
@@ -3860,8 +3744,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Сіздің шот-фактураңыз #{{trackId}} мерзімі аяқталды. ❌❌',
       statusDefault:
         "Шот-фактураны жаңарту:\n\nМәртебе: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nТөленуі керек сома: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Шот-фактура {{trackId}} аяқталды. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   ky: {
@@ -3923,8 +3805,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Сиздин эсеп-фактураңыз #{{trackId}} мөөнөтү бүткөн. ❌❌',
       statusDefault:
         "Эсеп-фактура жаңыртылды:\n\nАбалы: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nТөлөнө турган сумма: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Эсеп-фактура {{trackId}} аяктады. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   tk: {
@@ -3986,8 +3866,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Fakturaňyz #{{trackId}} möhleti geçen. ❌❌',
       statusDefault:
         "Faktura täzelenmesi:\n\nÝagdaýy: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nTölemeli mukdar: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Faktura {{trackId}} tamamlandy. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   tg: {
@@ -4048,8 +3926,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ Ҳисобномаи шумо #{{trackId}} тамом шудааст. ❌❌',
       statusDefault:
         "Навсозии ҳисобнома:\n\nМақом: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nМаблағи пардохтшаванда: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Ҳисобнома {{trackId}} анҷом ёфт. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   bo: {
@@ -4110,8 +3986,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ ཁྱེད་རང་གི་རྩིས་བསྒྲུབས་ #{{trackId}} རྒྱབ་འགྱོད་ཡོད། ❌❌',
       statusDefault:
         "རྩིས་བསྒྲུབས་གསར་བ།:\n\nགནས་བབས།: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nདངོས་གྲངས་གོ་ཆོད་ $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 རྩིས་བསྒྲུབས་ {{trackId}} གྲུབ་འགྲུབ། +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
   },
   tr: {
@@ -4172,8 +4046,6 @@ export const messages: MessagesType = {
       statusExpired: '⌛️ #{{trackId}} numaralı faturanızın süresi doldu. ❌❌',
       statusDefault:
         "Fatura Güncellemesi:\n\nDurum: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nÖdenmesi gereken tutar: $' + amount + ' ' + currency : ''}}",
-      logMessage:
-        '💸💸 Fatura {{trackId}} tamamlandı. +${{amount}} {{currency}}\nTXID: `{{txID}}` 💸💸',
     },
-  },
+  }
 };

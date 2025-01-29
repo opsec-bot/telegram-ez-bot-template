@@ -1,33 +1,40 @@
 import { Router } from 'express';
 import { Request, Response } from 'express';
-import { sendMessageToUser } from 'src';
-import { getAllUsers, lookupTelegramID } from 'src/database/database';
+import { getAllUsers } from 'src/database/database';
+import { sendMessageToUser } from 'src/utils/botutil';
 
 const router = Router();
 
-router.post('/msg/:telegramId', async (req: Request, res: Response) => {
+/**
+ * @route POST /msg/:telegramId
+ * @desc Send a message to a specific user via Telegram
+ * @param {string} telegramId - Telegram ID of the recipient
+ * @param {string} message - Message content to send
+ * @returns {Object} Response with success or error message
+ */
+router.post('/:telegramId', async (req: Request, res: Response) => {
   try {
-    const telegramId = req.params.telegramId;
+    const { telegramId } = req.params;
     const { message } = req.body;
 
     if (!message) {
       return res.status(400).json({ error: 'Message content is missing' });
     }
 
-    const user = await lookupTelegramID(telegramId);
-    if (!user) {
-      return res.status(404).json({ error: 'Telegram ID not found' });
-    }
-
-    await sendMessageToUser(telegramId, message, 1);
-
-    return res.status(200).json({ message: 'Message sent to user via Telegram' });
+    await sendMessageToUser(telegramId, message);
+    return res.status(200).json({ message: 'Message sent successfully' });
   } catch (error) {
-    console.error('Error sending message to user via Telegram:', error);
+    console.error('Error sending message:', error);
     return res.status(500).json({ error: 'Internal server error' });
   }
 });
 
+/**
+ * @route POST /massmessage
+ * @desc Send a message to all users with a registered Telegram ID
+ * @param {string} message - Message content to send
+ * @returns {Object} Response with success and failure counts
+ */
 router.post('/massmessage', async (req: Request, res: Response) => {
   try {
     const { message } = req.body;
@@ -36,35 +43,37 @@ router.post('/massmessage', async (req: Request, res: Response) => {
       return res.status(400).json({ error: 'Message content is missing' });
     }
 
-    const users = ((await getAllUsers()) as { telegramID: string }[]) || [];
-    console.log(users);
-    const usersWithTelegramID = users.filter((user: { telegramID: string }) => user.telegramID);
-
-    const telegramIDs = usersWithTelegramID.map((user: { telegramID: string }) => user.telegramID);
+    const users = await getAllUsers();
+    if (!users) {
+      return res.status(500).json({ error: 'Failed to retrieve users' });
+    }
+    const telegramIDs = users.filter((user) => user.telegramID).map((user) => user.telegramID);
 
     let successCount = 0;
     let failureCount = 0;
-    let errors: any[] = [];
+    const errors: Array<{ telegramId: string; error: any }> = [];
 
-    for (const telegramId of telegramIDs) {
-      try {
-        await sendMessageToUser(telegramId, message);
-        successCount++;
-      } catch (error) {
-        console.error(`Error sending message to ${telegramId}:`, error);
-        failureCount++;
-        errors.push({ telegramId, error });
-      }
-    }
+    await Promise.all(
+      telegramIDs.map(async (telegramId) => {
+        try {
+          await sendMessageToUser(telegramId, message);
+          successCount++;
+        } catch (error) {
+          console.error(`Error sending message to ${telegramId}:`, error);
+          failureCount++;
+          errors.push({ telegramId, error });
+        }
+      })
+    );
 
     return res.status(200).json({
-      message: 'Message sent to all users',
+      message: 'Mass message process completed',
       successCount,
       failureCount,
       errors,
     });
   } catch (error) {
-    console.error('Error sending message to all users:', error);
+    console.error('Error processing mass message:', error);
     return res.status(500).json({ error: 'Internal server error' });
   }
 });
