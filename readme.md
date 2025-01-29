@@ -30,13 +30,14 @@ git clone https://github.com/opsec-bot/telegram-ez-bot-template.git
 ```
 
 ### 2. Install Dependencies
+
 ```
 cd telegram-ez-bot-template
 ```
+
 ```
 npm install
 ```
-
 
 ### 3. Configure Environment Variables
 
@@ -45,7 +46,6 @@ Create the configuration file from the example config file and edit it:
 ```
 cp config.example.ts config.ts
 ```
-
 
 Edit the following in config.ts:
 
@@ -70,7 +70,6 @@ To start the bot, run:
 ```
 npm start
 ```
-
 
 ### Interacting with the Bot
 

@@ -1,6 +1,9 @@
 import sqlite3 from 'sqlite3';
 import { Database, open } from 'sqlite';
 import { rString } from '../utils/apiutil';
+import * as fs from 'fs';
+import * as path from 'path';
+import { parse } from 'json2csv';
 
 export interface result {
   status: 'success' | 'failed';
@@ -170,5 +173,47 @@ export async function counterUpd(telegramId: string): Promise<void> {
   } catch (error) {
     console.error('Error incrementing total:', error);
     throw new Error('Failed to increment total');
+  }
+}
+
+export async function exportDB(): Promise<result> {
+  try {
+    const users = await db.all(`SELECT * FROM users;`);
+
+    if (users.length === 0) {
+      return { status: 'failed', error: 'No data to export' };
+    }
+
+    const fields = [
+      'id',
+      'license',
+      'expirationDate',
+      'creationDate',
+      'creatorID',
+      'telegramID',
+      'total',
+    ];
+    const csv = parse(users, { fields });
+
+    const timestamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0];
+    const fileName = `export_${timestamp}.csv`;
+    const filePath = path.resolve(__dirname, fileName);
+
+    fs.writeFileSync(filePath, csv);
+
+    return { status: 'success' };
+  } catch (error) {
+    console.error('Error exporting DB to CSV:', error);
+    return { status: 'failed', error: (error as Error).message };
+  }
+}
+
+export async function getUserCount() {
+  try {
+    const result = await db.get('SELECT COUNT(*) as count FROM users;');
+    return result.count;
+  } catch (error) {
+    console.error('Error fetching user count:', error);
+    throw new Error('Failed to fetch user count');
   }
 }

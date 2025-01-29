@@ -37,6 +37,7 @@ router.post('/massmessage', async (req: Request, res: Response) => {
     }
 
     const users = ((await getAllUsers()) as { telegramID: string }[]) || [];
+    console.log(users);
     const usersWithTelegramID = users.filter((user: { telegramID: string }) => user.telegramID);
 
     const telegramIDs = usersWithTelegramID.map((user: { telegramID: string }) => user.telegramID);

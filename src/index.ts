@@ -1,7 +1,9 @@
 import {
   connectDB,
   deleteLicense,
+  exportDB,
   getAllUsers,
+  getUserCount,
   lookupLicense,
   lookupTelegramID,
   updateLicense,
@@ -13,9 +15,14 @@ import { config } from './configs/config';
 import { generateInvoice } from './API/routes/payment';
 import { messages } from './configs/messages.config';
 import { sendMessageToUser } from './utils/botutil';
+import path from 'path';
+import fs from 'fs';
+import crypto from 'crypto';
 
 connectDB();
 createExpressApp();
+
+process.env.NTBA_FIX_350 = 'true';
 
 export const bot = new TelegramBot(config.telegramToken, {
   polling: true,
@@ -111,6 +118,7 @@ async function sendStartMessage(chatId: TelegramBot.ChatId) {
 bot.setMyCommands([
   { command: 'start', description: 'Start the bot' },
   { command: 'id', description: 'Retrive the current channel id' },
+  { command: 'export', description: 'Export the database to CSV (Administrative)' },
 ]);
 
 bot.onText(/\/start/, async (msg) => {
@@ -150,6 +158,56 @@ bot.onText(/\/start/, async (msg) => {
 
 bot.onText(/\/id/, async (msg) => {
   bot.sendMessage(msg.chat.id, `Channel ID: \`${msg.chat.id}\``, { parse_mode: 'Markdown' });
+});
+
+bot.onText(/\/export/, async (msg) => {
+  const chatId = msg.chat.id;
+
+  if (!(await adminCheck(chatId))) return;
+
+  try {
+    const startTime = process.hrtime();
+
+    const exportResult = await exportDB();
+
+    if (exportResult.status === 'success') {
+      const timestamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0];
+      const csvFileName = `export_${timestamp}.csv`;
+      const csvFilePath = path.resolve(__dirname, csvFileName);
+
+      const userCount = await getUserCount();
+
+      const fileOptions = {
+        filename: csvFileName,
+        contentType: 'text/csv',
+      };
+
+      const [seconds, nanoseconds] = process.hrtime(startTime);
+      const durationInMilliseconds = (seconds * 1000 + nanoseconds / 1e6).toFixed(2);
+
+      await bot.sendDocument(
+        chatId,
+        csvFilePath,
+        {
+          caption: `Total Users: ${userCount}\nTime taken to export: ${durationInMilliseconds} ms`,
+          parse_mode: 'Markdown',
+        },
+        fileOptions
+      );
+
+      // Delete the file after sending
+      fs.unlink(csvFilePath, (err) => {
+        if (err) {
+          console.error('Error deleting the CSV file:', err);
+        }
+      });
+    } else {
+      await bot.sendMessage(chatId, `Failed to export CSV: ${exportResult.error}`);
+    }
+  } catch (error) {
+    console.error('Error during export and send process:', error);
+    await bot.sendMessage(chatId, 'An error occurred while exporting the CSV.');
+  }
 });
 
 bot.on('polling_error', (error: Error) => {
