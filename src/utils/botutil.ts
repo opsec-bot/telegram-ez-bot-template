@@ -24,3 +24,13 @@ export async function sendFileToUser(telegramId: string, filePath: string): Prom
     throw new Error('Failed to send file to user');
   }
 }
+
+export async function formatDate(unix: number): Promise<string> {
+  const date = new Date(unix * 1000);
+
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+
+  return `${month}/${day}/${year}`;
+}

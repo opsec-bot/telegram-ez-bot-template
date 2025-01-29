@@ -4047,5 +4047,5 @@ export const messages: MessagesType = {
       statusDefault:
         "Fatura Güncellemesi:\n\nDurum: {{status}}\n{{trackId ? 'ID: ' + trackId : ''}}{{amount && currency ? '\\nÖdenmesi gereken tutar: $' + amount + ' ' + currency : ''}}",
     },
-  }
+  },
 };
