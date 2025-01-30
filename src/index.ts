@@ -464,87 +464,100 @@ async function handleRedeem(chatId: number) {
 }
 
 async function handlePurchase(chatId: number) {
-  const startMessageData = botData.get(chatId);
-  if (startMessageData && startMessageData.startMessageId) {
-    await safeDeleteMessage(chatId, startMessageData.startMessageId);
+  try {
+    const startMessageData = botData.get(chatId);
+    if (startMessageData?.startMessageId) {
+      await safeDeleteMessage(chatId, startMessageData.startMessageId);
+    }
+
+    const localizedPurchaseOptions = {
+      WEEK: getMessage(chatId, 'purchase.week', { priceWEEK: config.prices.WEEK.toString() }),
+      MONTH: getMessage(chatId, 'purchase.month', { priceMONTH: config.prices.MONTH.toString() }),
+      LIFETIME: getMessage(chatId, 'purchase.lifetime', {
+        priceLIFETIME: config.prices.LIFETIME.toString(),
+      }),
+    };
+
+    const purchaseMessage = await bot.sendMessage(
+      chatId,
+      getMessage(chatId, 'purchase.chooseOption'),
+      {
+        reply_markup: {
+          inline_keyboard: [
+            [{ text: localizedPurchaseOptions.WEEK, callback_data: 'WEEK' }],
+            [{ text: localizedPurchaseOptions.MONTH, callback_data: 'MONTH' }],
+            [{ text: localizedPurchaseOptions.LIFETIME, callback_data: 'LIFETIME' }],
+            [{ text: getMessage(chatId, 'purchase.backToStart'), callback_data: 'start2' }],
+          ],
+        },
+      }
+    );
+
+    /**
+     * Handles callback query responses for purchase options.
+     *
+     * @param {object} callbackQuery - The callback query object.
+     */
+    const purchaseListener = async (callbackQuery: TelegramBot.CallbackQuery) => {
+      try {
+        if (callbackQuery.from.id !== chatId) return;
+
+        const { data: selectedPlan } = callbackQuery;
+
+        if (selectedPlan === 'start2') {
+          await safeDeleteMessage(chatId, purchaseMessage.message_id);
+          sendStartMessage(chatId);
+          return;
+        }
+
+        if (selectedPlan && ['WEEK', 'MONTH', 'LIFETIME'].includes(selectedPlan)) {
+          const amount = config.prices[selectedPlan as keyof typeof config.prices];
+          const planSettings = {
+            WEEK: { key: 'weeks', value: 1 },
+            MONTH: { key: 'months', value: 1 },
+            LIFETIME: { key: 'months', value: 99 },
+          }[selectedPlan];
+
+          const invoice = await generateInvoice(amount);
+
+          if (invoice) {
+            const invoiceData = JSON.parse(invoice);
+            tokenMap.set(invoiceData.token, {
+              chatId,
+              settings: planSettings ? [planSettings.key, planSettings.value] : [],
+            });
+
+            const messageText = getMessage(chatId, 'purchase.selectedPlan', {
+              plan: selectedPlan,
+              payLink: invoiceData.payLink,
+              expiryDate: new Date(invoiceData.expiredAt * 1000).toLocaleString(),
+            });
+
+            await bot.sendMessage(chatId, messageText, { parse_mode: 'Markdown' });
+          } else {
+            await bot.sendMessage(chatId, getMessage(chatId, 'errors.purchaseFailed'));
+          }
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error(`Error handling purchase callback: ${error.message}`, error);
+        } else {
+          console.error('Error handling purchase callback:', error);
+        }
+      } finally {
+        bot.removeListener('callback_query', purchaseListener);
+        await safeDeleteMessage(chatId, purchaseMessage.message_id);
+      }
+    };
+
+    bot.on('callback_query', purchaseListener);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(`Error handling purchase: ${error.message}`, error);
+    } else {
+      console.error('Error handling purchase:', error);
+    }
   }
-
-  const localizedPurchaseOptions = {
-    week: getMessage(chatId, 'purchase.week', { priceWEEK: config.prices.WEEK.toString() }),
-    month: getMessage(chatId, 'purchase.month', { priceMONTH: config.prices.MONTH.toString() }),
-    lifetime: getMessage(chatId, 'purchase.lifetime', {
-      priceLIFETIME: config.prices.LIFETIME.toString(),
-    }),
-  };
-
-  const purchaseMessage = await bot.sendMessage(
-    chatId,
-    getMessage(chatId, 'purchase.chooseOption'),
-    {
-      reply_markup: {
-        inline_keyboard: [
-          [{ text: localizedPurchaseOptions.week, callback_data: 'WEEK' }],
-          [{ text: localizedPurchaseOptions.month, callback_data: 'MONTH' }],
-          [{ text: localizedPurchaseOptions.lifetime, callback_data: 'LIFETIME' }],
-          [{ text: getMessage(chatId, 'purchase.backToStart'), callback_data: 'start2' }],
-        ],
-      },
-    }
-  );
-
-  const purchaseListener = async (innerCallbackQuery: any) => {
-    if (innerCallbackQuery.from.id !== chatId) return;
-
-    const innerCallbackData: 'WEEK' | 'MONTH' | 'LIFETIME' | 'start2' = innerCallbackQuery.data;
-
-    if (innerCallbackData === 'start2') {
-      await safeDeleteMessage(chatId, purchaseMessage.message_id);
-      sendStartMessage(chatId);
-      return;
-    }
-
-    if (['WEEK', 'MONTH', 'LIFETIME'].includes(innerCallbackData)) {
-      const amount = config.prices[innerCallbackData];
-      let key, value;
-
-      if (innerCallbackData === 'WEEK') {
-        key = 'weeks';
-        value = 1;
-      } else if (innerCallbackData === 'MONTH') {
-        key = 'months';
-        value = 1;
-      } else if (innerCallbackData === 'LIFETIME') {
-        key = 'months';
-        value = 99;
-      }
-
-      const invoice = await generateInvoice(amount);
-
-      if (invoice) {
-        const invoiceData = JSON.parse(invoice);
-
-        tokenMap.set(invoiceData.token, {
-          chatId: chatId,
-          settings: [key, value],
-        });
-
-        const messageText = getMessage(chatId, 'purchase.selectedPlan', {
-          plan: innerCallbackData,
-          payLink: invoiceData.payLink,
-          expiryDate: new Date(invoiceData.expiredAt * 1000).toLocaleString(),
-        });
-
-        await bot.sendMessage(chatId, messageText, { parse_mode: 'Markdown' });
-      } else {
-        await bot.sendMessage(chatId, getMessage(chatId, 'errors.purchaseFailed'));
-      }
-
-      bot.removeListener('callback_query', purchaseListener);
-      await safeDeleteMessage(chatId, purchaseMessage.message_id);
-    }
-  };
-
-  bot.on('callback_query', purchaseListener);
 }
 
 function isLicenseExpired(expirationDate: string): boolean {
