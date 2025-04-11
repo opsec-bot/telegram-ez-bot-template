@@ -2,10 +2,11 @@ import axios, { AxiosError } from 'axios';
 import express, { Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { config } from '../../configs/config';
-import { bot, getMessage, tokenMap } from 'src';
+import { tokenMap } from '../../handlers/menuHandlers';
 import { newUnix } from 'src/utils/apiutil';
 import { createLicense } from 'src/database/database';
-import { sendMessageToUser } from '../../utils/botutil';
+import { sendMessageToUser, getMessage } from '../../utils/botutil';
+import { bot } from 'src/index';
 
 interface InquiryResponse {
   status: string;
@@ -88,53 +89,57 @@ export const txidLookup = async (txid: string): Promise<InquiryResponse> => {
 };
 
 router.post('/callback/:token', async (req: Request, res: Response) => {
-  const { token } = req.params;
-  const data = req.body;
+  try {
+    const { token } = req.params;
+    const data = req.body;
 
-  const tokenData = tokenMap.get(token);
-  if (tokenData) {
-    const { chatId, settings } = tokenData;
-    const expirationDate = newUnix(settings[0], settings[1]);
-    const license = await createLicense(expirationDate, '1');
+    const tokenData = tokenMap.get(token);
+    if (tokenData) {
+      const { chatId, settings } = tokenData;
+      const expirationDate = newUnix(settings[0], settings[1]);
+      const license = await createLicense(expirationDate, '1');
 
-    let message: string;
+      let message: string;
+      switch (data.status) {
+        case 'Paid':
+          message = getMessage(chatId, 'invoice.statusPaid', {
+            status: data.status,
+            trackId: data.trackId,
+            license,
+          });
+          if (config.oxaTelegramLogsId) {
+            sendMessageToUser(
+              config.oxaTelegramLogsId,
+              `Invoice #${data.trackId}\n\nStatus: Completed\nAmount: +$${data.amount} ${data.currency}\nTXID: \`${data.txID}\` 💸💸`,
+              1
+            );
+          }
+          break;
 
-    switch (data.status) {
-      case 'Paid':
-        message = getMessage(chatId, 'invoice.statusPaid', {
-          status: data.status,
-          trackId: data.trackId,
-          license,
-        });
-        if (config.oxaTelegramLogsId) {
-          sendMessageToUser(
-            config.oxaTelegramLogsId,
-            `Invoice #${data.trackId}\n\nStatus: Completed\nAmount: +$${data.amount} ${data.currency}\nTXID: \`${data.txID}\` 💸💸`,
-            1
-          );
-        }
-        break;
+        case 'Expired':
+          message = getMessage(chatId, 'invoice.statusExpired', {
+            trackId: data.trackId,
+          });
+          break;
 
-      case 'Expired':
-        message = getMessage(chatId, 'invoice.statusExpired', {
-          trackId: data.trackId,
-        });
-        break;
+        default:
+          message = getMessage(chatId, 'invoice.statusDefault', {
+            status: data.status,
+            trackId: data.trackId || '',
+            amount: data.amount || '',
+            currency: data.currency || '',
+          });
+          break;
+      }
 
-      default:
-        message = getMessage(chatId, 'invoice.statusDefault', {
-          status: data.status,
-          trackId: data.trackId || '',
-          amount: data.amount || '',
-          currency: data.currency || '',
-        });
-        break;
+      await bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
     }
 
-    bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
+    res.sendStatus(200);
+  } catch (error) {
+    console.error('Error in /callback route:', error);
+    res.sendStatus(200);
   }
-
-  res.sendStatus(200);
 });
 
 export default router;

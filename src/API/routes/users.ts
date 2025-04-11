@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { sendMessageToUser } from 'src';
+import { sendMessageToUser } from '../../utils/botutil';
 import {
   createLicense,
   deleteLicense,
